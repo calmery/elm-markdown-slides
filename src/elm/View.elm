@@ -5,7 +5,7 @@ import Html.Attributes exposing (style)
 import List.Extra exposing ((!!))
 import Model exposing (Model, Route(Slide))
 import Update exposing (Msg)
-import Markdown exposing (toHtml)
+import Slides exposing (slides)
 
 
 slideStyle : Attribute Msg
@@ -18,13 +18,12 @@ slideStyle =
 view : Model -> Html Msg
 view model =
     div [ slideStyle ]
-        [ toHtml [] <|
-            case model.currentPosition of
-                Slide currentPosition ->
-                    case model.slides !! currentPosition of
-                        Just slide ->
-                            slide
+        [ case model.currentPosition of
+            Slide currentPosition ->
+                case slides !! currentPosition of
+                    Just slide ->
+                        slide
 
-                        Nothing ->
-                            ""
+                    Nothing ->
+                        text ""
         ]
