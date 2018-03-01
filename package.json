@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "build": "rimraf dist && webpack",
+    "prettify": "elm-format --yes src"
+  },
+  "devDependencies": {
+    "babel-minify-webpack-plugin": "^0.3.0",
+    "css-loader": "^0.28.10",
+    "elm": "^0.18.0",
+    "elm-format": "^0.6.1-alpha",
+    "elm-webpack-loader": "^4.4.0",
+    "extract-loader": "^1.0.2",
+    "file-loader": "^1.1.10",
+    "html-loader": "^0.5.5",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.20.2",
+    "webpack": "^3.11.0"
+  }
+}
