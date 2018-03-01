@@ -13,7 +13,13 @@ module.exports = {
     rules: [{
       test: /\.elm$/,
       exclude: [/elm-stuff/, /node_modules/],
-      use: 'elm-webpack-loader'
+      use: {
+        loader: 'elm-webpack-loader',
+        options: {
+          verbose: true,
+          warn: true
+        }
+      }
     }, {
       test: /\.css$/,
       use: ['style-loader', {
@@ -38,9 +44,7 @@ module.exports = {
       }]
     }]
   },
-  plugins: [
-    new MinifyPlugin()
-  ],
+  plugins: [new MinifyPlugin()],
   output: {
     path: resolve( 'dist/' ),
     filename: 'elm.js'
