@@ -20,9 +20,22 @@ slides : List (Html msg)
 slides =
     [ toHtml [] <| """
 # First
+
+```javascript
+function main(){
+  console.log( 'Hello World' )
+}
+```
 """
     , toHtml [] <| """
 # Second
+
+```javascript
+const add = ( x, y ) => x + y
+
+const result = add( 5, 10 )
+console.log( result )
+```
 """
     , h1 [] [ text "Third" ]
     , div []
