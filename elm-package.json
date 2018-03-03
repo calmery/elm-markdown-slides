@@ -1,7 +1,7 @@
 {
     "version": "0.0.0",
     "summary": "",
-    "repository": "https://github.com/pixiv/pixiv-snapshot-intern2018.git",
+    "repository": "https://github.com/calmery/elm-markdown-slides.git",
     "license": "BSD3",
     "source-directories": [
         "src/elm"
