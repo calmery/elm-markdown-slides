@@ -19,7 +19,7 @@ slideStyle =
         , ( "margin-top", "-281.75px" )
         , ( "margin-left", "-500.5px" )
         , ( "background", "#FFFFFF" )
-        , ( "border", "1px solid rgba(235, 235, 235, 1)" )
+        , ( "border", "1px solid #E6E6E6" )
         , ( "border-radius", "3px" )
         ]
 
@@ -27,7 +27,7 @@ slideStyle =
 view : Model -> Html Msg
 view model =
     div [ slideStyle ]
-        [ div [ style [ ( "padding", "29.5px 69px" ) ] ]
+        [ div [ style [ ( "padding", "29.5px 68.5px" ) ] ]
             [ case model.currentPosition of
                 Slide currentPosition ->
                     case slides !! currentPosition of
