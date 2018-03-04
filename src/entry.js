@@ -8,6 +8,9 @@ import hljs from 'highlight.js'
 
 const app = Elm.Main.fullscreen()
 
-document.body.addEventListener( 'DOMSubtreeModified', _ => {
-  [].slice.call( document.querySelectorAll( 'pre code' ) ).forEach( hljs.highlightBlock )
+document.body.addEventListener( 'DOMSubtreeModified', e => {
+  const elements = [].slice.call( document.querySelectorAll( 'pre code' ) )
+  if( elements.indexOf( e.target ) !== -1 ) return
+
+  elements.forEach( hljs.highlightBlock )
 }, false )
