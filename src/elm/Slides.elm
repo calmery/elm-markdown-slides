@@ -3,6 +3,7 @@ module Slides exposing (slides)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Markdown exposing (toHtml)
+import EmbeddedGist
 
 
 -- Support
@@ -41,5 +42,12 @@ console.log( result )
     , div []
         [ h1 [] [ text "Fourth" ]
         , divide [ text "Left" ] [ text "Right" ]
+        ]
+    , div []
+        [ h1 [] [ text "Embedded Gist" ]
+        , divide
+            [ div [] [ text "Hello World" ]
+            ]
+            [ EmbeddedGist.unsafeEmbeddedGist "calmery/b74cf2ba1fa17542e220e7ac5aafd941" ]
         ]
     ]
