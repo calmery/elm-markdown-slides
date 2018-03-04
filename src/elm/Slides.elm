@@ -6,48 +6,83 @@ import Markdown exposing (toHtml)
 import EmbeddedGist
 
 
--- Support
+-- Template
 
 
-divide : List (Html msg) -> List (Html msg) -> Html msg
-divide left right =
-    div [ style [ ( "display", "flex" ) ] ]
-        [ div [ style [ ( "width", "50%" ) ] ] left
-        , div [ style [ ( "width", "50%" ) ] ] right
+title : String -> String -> Html msg
+title title subtitle =
+    div
+        [ style
+            [ ( "text-align", "center" )
+            , ( "top", "50%" )
+            , ( "left", "0" )
+            , ( "right", "0" )
+            , ( "position", "absolute" )
+            , ( "margin-top", "-73.25px" )
+            ]
         ]
+        [ div [] [ h1 [ style [ ( "margin-top", "0" ) ] ] [ text title ] ]
+        , div [] [ text subtitle ]
+        ]
+
+
+titleOnly : String -> List (Html msg) -> Html msg
+titleOnly title body =
+    div []
+        [ h1 [] [ text title ]
+        , div [] body
+        ]
+
+
+two : String -> List (Html msg) -> List (Html msg) -> Html msg
+two title left right =
+    let
+        parentSlideStyle =
+            style [ ( "display", "flex" ) ]
+
+        childSlideStyle =
+            style [ ( "width", "50%" ) ]
+    in
+        titleOnly title
+            [ div [ parentSlideStyle ]
+                [ div [ childSlideStyle ] left
+                , div [ childSlideStyle ] right
+                ]
+            ]
+
+
+blank : Html msg -> Html msg
+blank body =
+    div [] [ body ]
+
+
+
+-- Slides
 
 
 slides : List (Html msg)
 slides =
-    [ toHtml [] <| """
-# First
+    [ title "Title" "SubTitle"
+    , titleOnly "Title and Content" [ text "Hello World" ]
+    , two "Two Content" [ text "Left" ] [ text "Right" ]
+    , blank <| toHtml [] <| """
+# Markdown
 
-```javascript
-function main(){
-  console.log( 'Hello World' )
-}
+- Item 1
+- Item 2
+"""
+    , blank <| toHtml [] <| """
+# Highlight.js
+
+```elm
+module Main exposing (main)
+
+import Html exposing (Html, text)
+
+main : Html msg
+main =
+    text "Hello, World!"
 ```
 """
-    , toHtml [] <| """
-# Second
-
-```javascript
-const add = ( x, y ) => x + y
-
-const result = add( 5, 10 )
-console.log( result )
-```
-"""
-    , h1 [] [ text "Third" ]
-    , div []
-        [ h1 [] [ text "Fourth" ]
-        , divide [ text "Left" ] [ text "Right" ]
-        ]
-    , div []
-        [ h1 [] [ text "Embedded Gist" ]
-        , divide
-            [ div [] [ text "Hello World" ]
-            ]
-            [ EmbeddedGist.unsafeEmbeddedGist "calmery/b74cf2ba1fa17542e220e7ac5aafd941" ]
-        ]
+    , titleOnly "Embedded Gist" [ EmbeddedGist.unsafeEmbeddedGist "calmery/b74cf2ba1fa17542e220e7ac5aafd941" ]
     ]
