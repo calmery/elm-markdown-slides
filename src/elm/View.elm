@@ -11,19 +11,30 @@ import Slides exposing (slides)
 slideStyle : Attribute Msg
 slideStyle =
     style
-        [ ( "padding", "50px" )
+        [ ( "width", "1000px" )
+        , ( "height", "562.5px" )
+        , ( "top", "50%" )
+        , ( "left", "50%" )
+        , ( "position", "absolute" )
+        , ( "margin-top", "-281.75px" )
+        , ( "margin-left", "-500.5px" )
+        , ( "background", "#FFFFFF" )
+        , ( "border", "1px solid rgba(235, 235, 235, 1)" )
+        , ( "border-radius", "3px" )
         ]
 
 
 view : Model -> Html Msg
 view model =
     div [ slideStyle ]
-        [ case model.currentPosition of
-            Slide currentPosition ->
-                case slides !! currentPosition of
-                    Just slide ->
-                        slide
+        [ div [ style [ ( "padding", "29.5px 69px" ) ] ]
+            [ case model.currentPosition of
+                Slide currentPosition ->
+                    case slides !! currentPosition of
+                        Just slide ->
+                            slide
 
-                    Nothing ->
-                        text ""
+                        Nothing ->
+                            text ""
+            ]
         ]
