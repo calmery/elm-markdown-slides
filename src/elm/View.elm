@@ -9,6 +9,12 @@ import Update exposing (Msg)
 import Slides exposing (slides)
 
 
+type alias Delta =
+    { deltaY : Float
+    , timeStamp : Float
+    }
+
+
 slideStyle : Attribute Msg
 slideStyle =
     style

@@ -1,4 +1,4 @@
-module Update exposing (Msg(KeyDown, UrlChange), update)
+module Update exposing (Msg(KeyDown, UrlChange, ChangeInnerWidth), update)
 
 import List exposing (length)
 import Model exposing (Model, Route(Slide))
@@ -17,6 +17,7 @@ type Msg
     | Next
     | KeyDown Int
     | UrlChange Location
+    | ChangeInnerWidth Int
 
 
 moveSlide : Bool -> Model -> Int -> ( Model, Cmd Msg )
@@ -78,3 +79,13 @@ update msg model =
                             Slide 0
             in
                 { model | currentPosition = currentPosition } ! []
+
+        ChangeInnerWidth width ->
+            let
+                oldTouchDevice =
+                    model.touchDevice
+
+                touchDevice =
+                    { oldTouchDevice | innerWidth = width }
+            in
+                { model | touchDevice = touchDevice } ! []
