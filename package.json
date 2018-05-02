@@ -2,6 +2,7 @@
   "scripts": {
     "build": "rimraf dist && webpack",
     "prettify": "elm-format --yes src && elm-format --yes tests",
+    "postinstall": "elm make --yes",
     "test": "elm-test"
   },
   "devDependencies": {
